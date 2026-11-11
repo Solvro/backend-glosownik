@@ -3,17 +3,24 @@ version: "3.8"
 services:
   mongo:
     image: mongo:7
-    container_name: backend-glosownik
+    container_name: glosownik-database
     restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: glosownik
+      MONGO_INITDB_ROOT_PASSWORD: glosownik
     ports:
-      - "27017:27017"
-    # Uruchamiamy MongoDB z flagą włączającą Replica Set o nazwie "rs0"
-    command: ["--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
+      - "127.0.0.1:27017:27017"
+    command: >
+      bash -c "
+      echo 'HeresToTheCrazyOnes' > /tmp/keyfile && 
+      chmod 400 /tmp/keyfile && 
+      chown 999:999 /tmp/keyfile && 
+      exec mongod --replSet rs0 --bind_ip_all --keyFile /tmp/keyfile
+      "
     volumes:
       - mongo_data:/data/db
-    # Ten healthcheck automatycznie zainicjuje Replica Set po starcie kontenera
     healthcheck:
-      test: test $$(echo "rs.initiate({_id:'rs0',members:[{_id:0,host:\"localhost:27017\"}]}).ok || rs.status().ok" | mongosh --port 27017 --quiet) -eq 1
+      test: test $$(echo "rs.initiate({_id:'rs0',members:[{_id:0,host:\"localhost:27017\"}]}).ok || rs.status().ok" | mongosh -u glosownik -p glosownik --authenticationDatabase admin --port 27017 --quiet) -eq 1
       interval: 10s
       start_period: 30s
 
