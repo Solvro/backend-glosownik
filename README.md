@@ -108,4 +108,4 @@ Klepaczy kodu interesuje przede wszystkim :dev
 
 ## Licencja
 
-Licencja projektu to GNU GPL v3.0. Więcej o licencji dowiesz się [TUTAJ](LICENSE).
+Licencja projektu to GNU AGPL v3.0. Więcej o licencji dowiesz się [TUTAJ](LICENSE).
