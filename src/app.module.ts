@@ -10,11 +10,12 @@ import {
 
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
+import { DevelopmentModule } from "./development/development.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { auth } from "./utils/auth";
 
 @Module({
-  imports: [PrismaModule, AuthModule.forRoot({ auth })],
+  imports: [PrismaModule, AuthModule.forRoot({ auth }), DevelopmentModule],
   controllers: [AppController],
   providers: [AppService],
 })
