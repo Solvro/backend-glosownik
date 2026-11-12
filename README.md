@@ -1,6 +1,6 @@
 # Głosownik
 
-![Baner KN Solvro](https://github.com/Solvro/web-solvro.pwr.edu.pl/raw/main/public/logo/solvro.png)
+![Głosownik](docs/images/glosownik.svg)
 
 Głosownik to projekt aplikacji webowej do przeprowadzania różnego rodzaju głosowań podczas Walnych Zgromadzeń Członków czy to innego typu wyborów. Aplikacja ma zastąpić dotychczasowe papierowe rozwiązania. Każde głosowanie ma pozwolić na stwierdzenie kworum oraz późniejsze anonimowe oddawanie głosów przez uczestników.
 
